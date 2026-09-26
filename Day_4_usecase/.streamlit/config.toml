@@ -1,0 +1,14 @@
+[client]
+showErrorDetails = false
+
+[logger]
+level = "error"
+
+[browser]
+gatherUsageStats = false
+serverAddress = "localhost"
+serverPort = 8501
+
+[server]
+runOnSave = true
+headless = false

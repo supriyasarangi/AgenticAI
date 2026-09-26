@@ -1,0 +1,58 @@
+# AI Model Configuration - Task-to-Model Mapping
+# Maps each pipeline task to its model, reasoning effort, and token limits.
+
+tasks:
+  query_planner:
+    model: claude-sonnet-5
+    effort: medium
+    thinking: adaptive
+    max_tokens: 2000
+
+  literature_retriever:
+    model: claude-haiku-4-5
+    effort: low
+    thinking: disabled
+    max_tokens: 1024
+
+  clinical_trials_retriever:
+    model: claude-haiku-4-5
+    effort: low
+    thinking: disabled
+    max_tokens: 1024
+
+  regulatory_retriever:
+    model: claude-haiku-4-5
+    effort: low
+    thinking: disabled
+    max_tokens: 1024
+
+  evidence_ranker:
+    model: claude-haiku-4-5
+    effort: low
+    thinking: disabled
+    max_tokens: 1024
+
+  synthesizer:
+    model: claude-sonnet-5
+    effort: medium
+    thinking: adaptive
+    max_tokens: 3000
+
+  verifier:
+    model: claude-opus-5
+    effort: high
+    thinking: adaptive
+    max_tokens: 4000
+
+  response_composer:
+    model: claude-haiku-4-5
+    effort: low
+    thinking: disabled
+    max_tokens: 2000
+
+# Global defaults for all tasks
+defaults:
+  max_retries: 3
+  base_delay_seconds: 1.0
+  max_delay_seconds: 30.0
+  request_timeout_seconds: 60.0

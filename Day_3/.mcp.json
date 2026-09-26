@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "travelops": {
+      "type": "stdio",
+      "command": ".venv/bin/python",
+      "args": ["travelops_mcp_server.py"],
+      "env": {}
+    }
+  }
+}

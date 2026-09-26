@@ -1,0 +1,155 @@
+{
+  "project_name": "Agentic RAG Drug-Discovery System",
+  "description": "Multi-agent RAG system with deterministic context trimming and isolated sub-agent work",
+
+  "permissions": {
+    "allow": [
+      "read_files",
+      "write_files",
+      "execute_python",
+      "execute_bash"
+    ],
+    "require_approval_for": [
+      "delete_files",
+      "git_force_push",
+      "git_reset_hard",
+      "git_delete_branch"
+    ]
+  },
+
+  "hooks": {
+    "on_save_orchestration_files": {
+      "description": "When orchestration files change, verify imports",
+      "paths": [
+        "orchestration/*.py",
+        "schemas/*.py"
+      ],
+      "run": "python -c 'from orchestration import RAGState, ContextManager; print(\"✓ Imports valid\")'",
+      "on_error": "continue"
+    },
+
+    "on_save_ui_files": {
+      "description": "When UI files change, check Streamlit syntax",
+      "paths": [
+        "ui/*.py"
+      ],
+      "run": "python -m py_compile ui/app.py && echo '✓ UI syntax valid'",
+      "on_error": "warn"
+    },
+
+    "on_save_config_files": {
+      "description": "When config files change, validate YAML structure",
+      "paths": [
+        "config/*.yaml"
+      ],
+      "run": "python -c \"import yaml; [yaml.safe_load(open(f)) for f in ['config/scoring_weights.yaml', 'config/domains.yaml']]; print('✓ Config files valid')\"",
+      "on_error": "warn"
+    },
+
+    "on_agent_spawn": {
+      "description": "When spawning an agent, remind about context trimming",
+      "run": "echo '💡 Reminder: Agent context is trimmed to 12-15% summary + 8-10 recent exchanges. See docs/context-management.md'",
+      "on_error": "continue"
+    },
+
+    "on_phase_complete": {
+      "description": "When phase work is reported complete, suggest next steps",
+      "paths": [
+        "IMPLEMENTATION_SUMMARY.md",
+        "PHASE_*_IMPLEMENTATION.md"
+      ],
+      "run": "echo '🚀 Phase complete. Run: python -m orchestration.graph (backend) or streamlit run ui/app.py (frontend)'",
+      "on_error": "continue"
+    }
+  },
+
+  "environment": {
+    "PYTHONPATH": ".",
+    "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}",
+    "CHROMA_PERSIST_DIR": "./data/chroma"
+  },
+
+  "agent_profiles": {
+    "backend-engineer": {
+      "model": "claude-opus-5",
+      "context_window": 100000,
+      "trimming_ratio": 0.15,
+      "recent_messages": 10,
+      "modules_owned": [
+        "ingestion/",
+        "agents/",
+        "orchestration/",
+        "domain/",
+        "config/",
+        "schemas/",
+        "eval/"
+      ]
+    },
+
+    "frontend-engineer": {
+      "model": "claude-sonnet-5",
+      "context_window": 100000,
+      "trimming_ratio": 0.15,
+      "recent_messages": 10,
+      "modules_owned": [
+        "ui/"
+      ]
+    },
+
+    "p3-triage-agent": {
+      "model": "claude-sonnet-5",
+      "context_window": 100000,
+      "trimming_ratio": 0.15,
+      "recent_messages": 10,
+      "modules_owned": [
+        "agents/p3_triage_agent.py",
+        "config/triage_policy.yaml",
+        "schemas/triage_report.py",
+        "eval/triage_reports/",
+        "eval/p3_triage_example.py"
+      ]
+    }
+  },
+
+  "linting": {
+    "python": {
+      "enable": true,
+      "style": "black",
+      "ignore": [
+        "E501",
+        "W503"
+      ]
+    },
+    "type_checking": {
+      "enable": true,
+      "framework": "pyright"
+    }
+  },
+
+  "testing": {
+    "python_unit_tests": "python -m pytest tests/ -v",
+    "integration_tests": "python test_ui_integration.py",
+    "orchestration_test": "python -m orchestration.graph"
+  },
+
+  "documentation": {
+    "main_guides": [
+      "AGENT_DELEGATION_GUIDE.md",
+      "CONTEXT_MANAGEMENT_SETUP.md",
+      "IMPLEMENTATION_SUMMARY.md",
+      "QUICKSTART.md"
+    ],
+    "reference": [
+      "docs/context-management.md",
+      "docs/architecture.md",
+      "docs/requirements.md",
+      "docs/units-of-work.md",
+      "docs/domain-model.md"
+    ],
+    "agent_specs": [
+      ".claude/agents/backend-engineer.md",
+      ".claude/agents/frontend-engineer.md",
+      ".claude/agents/p3-triage-agent.md"
+    ]
+  }
+}

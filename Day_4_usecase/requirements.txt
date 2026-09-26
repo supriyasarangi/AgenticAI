@@ -1,0 +1,39 @@
+# Agentic RAG Drug-Discovery System - Requirements
+
+# Core dependencies
+anthropic>=0.25.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+
+# Orchestration
+langgraph>=0.0.40
+langchain-core>=0.1.0
+tenacity>=8.2.0
+
+# Vector database & embeddings
+chromadb>=0.4.0
+sentence-transformers>=2.2.0
+numpy>=1.24.0
+
+# HTTP clients
+httpx>=0.24.0
+requests>=2.31.0
+
+# Data & parsing
+biopython>=1.81
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+pyyaml>=6.0
+
+# UI (Streamlit)
+streamlit>=1.28.0
+
+# Development & testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Optional: LLM integrations (for Phase 2+)
+# openai>=1.0.0        # If adding OpenAI support
+# anthropic-bedrock   # If adding AWS Bedrock support

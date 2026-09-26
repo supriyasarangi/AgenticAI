@@ -1,0 +1,80 @@
+# Domain & Jurisdiction Taxonomy
+# Stub for Phase 0; defines therapeutic areas and regulatory jurisdictions
+
+# Therapeutic areas (controlled vocabulary)
+therapeutic_areas:
+  oncology:
+    display_name: "Oncology"
+    mesh_keywords:
+      - "neoplasms"
+      - "cancer"
+      - "tumor"
+      - "carcinoma"
+  cardiology:
+    display_name: "Cardiology"
+    mesh_keywords:
+      - "cardiovascular"
+      - "heart"
+      - "cardiac"
+  neurology:
+    display_name: "Neurology"
+    mesh_keywords:
+      - "nervous system"
+      - "neurological"
+      - "brain"
+  immunology:
+    display_name: "Immunology"
+    mesh_keywords:
+      - "immune system"
+      - "immunological"
+      - "antibody"
+  infectious_disease:
+    display_name: "Infectious Disease"
+    mesh_keywords:
+      - "infection"
+      - "infectious"
+      - "pathogenic"
+      - "antibiotic"
+  rare_disease:
+    display_name: "Rare Disease"
+    mesh_keywords:
+      - "rare"
+      - "orphan"
+      - "genetic disorder"
+
+# Regulatory jurisdictions
+jurisdictions:
+  FDA:
+    display_name: "FDA (United States)"
+    tier: 1.0
+    connectors:
+      - fda_connector
+  EMA:
+    display_name: "EMA (European Union)"
+    tier: 1.0
+    connectors:
+      - ema_connector
+  ICH:
+    display_name: "ICH (International)"
+    tier: 1.0
+    connectors:
+      - ich_connector
+  PMDA:
+    display_name: "PMDA (Japan)"
+    tier: 1.0
+    connectors:
+      - pmda_connector
+  MHRA:
+    display_name: "MHRA (United Kingdom)"
+    tier: 1.0
+    connectors:
+      - mhra_connector
+  GLOBAL:
+    display_name: "Global (Literature & Trials)"
+    tier: null  # Not regulatory
+    connectors: []
+
+# Default selections (for testing)
+defaults:
+  therapeutic_area: "oncology"
+  jurisdiction: "FDA"

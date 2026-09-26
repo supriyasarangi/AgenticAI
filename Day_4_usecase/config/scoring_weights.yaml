@@ -1,0 +1,38 @@
+# Confidence Scoring Formula Weights
+# Stub for Phase 0; values subject to tuning during Phase 3-4
+
+# Composite score formula:
+# confidence = w_retrieval * retrieval_similarity
+#            + w_source * source_authority_tier
+#            + w_corroboration * corroboration_count
+#            + w_recency * recency_score
+#            + w_llm * llm_consistency_check
+# All weights should sum to approximately 1.0
+
+weights:
+  retrieval_similarity: 0.25
+  source_authority_tier: 0.30
+  corroboration_count: 0.20
+  recency_score: 0.10
+  llm_consistency_check: 0.15
+
+# Confidence tier thresholds
+thresholds:
+  high: 0.75      # High confidence
+  medium: 0.50    # Medium confidence
+  low: 0.25       # Low confidence
+  # Below 0.25 is Unverified
+
+# Recency decay half-life (in days) per source type
+# Scores decay by 50% every N days from publication
+recency_half_life_days:
+  regulatory: 730      # ~2 years
+  literature: 365      # ~1 year
+  clinical_trial: 180  # ~6 months
+  preprint: 90         # ~3 months
+
+# Corroboration scoring
+# Raw count is log-scaled and capped
+corroboration:
+  max_sources: 10      # Cap at this many independent sources
+  log_scale: true      # Apply log scaling to count

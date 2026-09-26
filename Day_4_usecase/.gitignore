@@ -1,0 +1,28 @@
+# Environment variables
+.env
+.env.local
+
+# Vector database
+data/chroma/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Evaluation reports
+eval/triage_reports/*.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
