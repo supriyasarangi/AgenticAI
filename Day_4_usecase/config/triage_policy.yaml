@@ -1,0 +1,74 @@
+# P3 Triage Agent Policy Configuration
+# Deterministic rules for triaging Low confidence and Unverified claims
+
+triage_thresholds:
+  # Minimum number of sources required to escalate from Low to Medium
+  corroboration_for_escalation: 2
+
+  # Minimum authority tier (0-1.0 scale) for a single source to support acceptance
+  min_authority_tier_for_acceptance: 0.65
+
+  # Document age threshold (days) for recency discount
+  recency_half_life_days: 365
+
+  # Minimum similarity score (0-1) for chunk-claim relevance
+  min_chunk_relevance: 0.5
+
+decision_framework:
+  drop:
+    description: "Claim is contradicted or wholly ungrounded"
+    conditions:
+      - "Explicit contradiction in cited chunks"
+      - "No citations resolve to valid content"
+      - "Cited chunks do not entail the claim"
+
+  escalate:
+    description: "Claim is grounded but needs more/better evidence"
+    conditions:
+      - "Grounded in 1 source only, below corroboration threshold"
+      - "All sources are low-tier (preprint/trial only, no regulatory)"
+      - "Recency is beyond acceptable window for the domain"
+    recommendation: "Suggest backend re-run retrieval with broader search or different decomposition"
+
+  accept:
+    description: "Claim confidence tier is appropriately assigned"
+    conditions:
+      - "Grounded in cited chunks"
+      - "Confidence tier matches evidence quality"
+      - "No actionable data quality issues"
+
+  re_evaluate:
+    description: "Data integrity issue prevents clear judgment"
+    conditions:
+      - "Cited chunks are missing or corrupted"
+      - "Metadata malformed or inconsistent"
+      - "Source authority tier cannot be determined"
+    recommendation: "Flag for backend-engineer data quality audit"
+
+promotion_criteria:
+  # When to recommend promoting Low → Medium
+  from_low_to_medium:
+    min_corroboration_sources: 2
+    include_regulatory: true  # at least 1 regulatory source
+    max_age_days: 730  # within 2 years
+
+  # When to recommend promoting Medium → High
+  from_medium_to_high:
+    min_corroboration_sources: 3
+    include_multiple_jurisdictions: true
+    recent_publication: 365  # within 1 year
+
+# Escalation severity levels (for dashboard/workflow integration)
+severity_levels:
+  critical: "Contains false/contradictory information; must be dropped"
+  high: "Unsupported or under-supported; needs immediate re-evaluation"
+  medium: "Borderline confidence tier; consider promotion if more evidence found"
+  low: "Acceptable; confidence tier is appropriate to evidence"
+
+# Reporting configuration
+reporting:
+  output_dir: "eval/triage_reports"
+  include_source_chunks: true  # Include full cited text in report
+  include_confidence_rationale: true
+  aggregate_statistics: true
+  per_claim_detail: true
