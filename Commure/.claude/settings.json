@@ -1,0 +1,31 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /home/labuser/Downloads/Commure && npm run typecheck 2>&1 | head -20",
+            "timeout": 30,
+            "statusMessage": "Type-checking TypeScript..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git diff --cached 2>/dev/null | grep -E '(\\.env|\\.env\\.[a-z]+|sk-ant-)' && echo 'ERROR: Secret or .env file detected in staging area. Remove before committing.' && exit 1 || exit 0",
+            "timeout": 10,
+            "statusMessage": "Checking for secrets in staged files...",
+            "if": "Bash(git (add|commit))"
+          }
+        ]
+      }
+    ]
+  }
+}

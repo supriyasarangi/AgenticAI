@@ -1,0 +1,86 @@
+{
+  ".claude/settings.local.json": {
+    "mtime": 1789794761.0593493,
+    "seen": 1789795457.0789287,
+    "ast_hash": "dd7004e6a2e45e49d69e9162c40f50ee",
+    "semantic_hash": "dd7004e6a2e45e49d69e9162c40f50ee"
+  },
+  ".mcp.json": {
+    "mtime": 1789794754.2357688,
+    "seen": 1789795457.078936,
+    "ast_hash": "45f9f8a8465e4ce4965350a8c537d02d",
+    "semantic_hash": "45f9f8a8465e4ce4965350a8c537d02d"
+  },
+  "backend/__init__.py": {
+    "mtime": 1789794609.4454522,
+    "seen": 1789795457.0789392,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "backend/main.py": {
+    "mtime": 1789794638.0611458,
+    "seen": 1789795457.0789409,
+    "ast_hash": "901809104e2625b068f4340aba15d9ba",
+    "semantic_hash": "901809104e2625b068f4340aba15d9ba"
+  },
+  "backend/schemas.py": {
+    "mtime": 1789794629.4731388,
+    "seen": 1789795457.0789428,
+    "ast_hash": "1ee19e9653343f4f47a46c129b34b906",
+    "semantic_hash": "1ee19e9653343f4f47a46c129b34b906"
+  },
+  "backend/sip_calculator.py": {
+    "mtime": 1789794624.0752625,
+    "seen": 1789795457.0789442,
+    "ast_hash": "6bd5e9ec8ddb35cb542751c137851580",
+    "semantic_hash": "6bd5e9ec8ddb35cb542751c137851580"
+  },
+  "backend/worldbank_client.py": {
+    "mtime": 1789794617.879314,
+    "seen": 1789795457.078946,
+    "ast_hash": "447fdd7fe66d7ad8e8f75001b3b91080",
+    "semantic_hash": "447fdd7fe66d7ad8e8f75001b3b91080"
+  },
+  "frontend/app.js": {
+    "mtime": 1789794681.956075,
+    "seen": 1789795457.0789475,
+    "ast_hash": "e62b6ab1974f2ec0bdb8377f14c94b33",
+    "semantic_hash": "e62b6ab1974f2ec0bdb8377f14c94b33"
+  },
+  "mcp_server/inflation_mcp_server.py": {
+    "mtime": 1789794739.5515196,
+    "seen": 1789795457.078949,
+    "ast_hash": "fb4c987c12405effa14a0e4a9fba0879",
+    "semantic_hash": "fb4c987c12405effa14a0e4a9fba0879"
+  },
+  "tests/test_sip_calculator.py": {
+    "mtime": 1789794644.285416,
+    "seen": 1789795457.0789502,
+    "ast_hash": "4ff87b92eb1820637b96723164b89e2a",
+    "semantic_hash": "4ff87b92eb1820637b96723164b89e2a"
+  },
+  ".claude/agents/backend-engineer.md": {
+    "mtime": 1789794791.017999,
+    "seen": 1789795457.0789516,
+    "ast_hash": "3696a25f0105eee9c8666656e89267b4",
+    "semantic_hash": "3696a25f0105eee9c8666656e89267b4"
+  },
+  "README.md": {
+    "mtime": 1789794807.7083175,
+    "seen": 1789795457.0789537,
+    "ast_hash": "0c2a3b643cee5bdea1ea9dd8a0f15f74",
+    "semantic_hash": "0c2a3b643cee5bdea1ea9dd8a0f15f74"
+  },
+  "frontend/index.html": {
+    "mtime": 1789794659.640722,
+    "seen": 1789795457.078955,
+    "ast_hash": "722e6a03fa7a7e1eb44095b57db1b2dd",
+    "semantic_hash": "722e6a03fa7a7e1eb44095b57db1b2dd"
+  },
+  "requirements.txt": {
+    "mtime": 1789794795.0078154,
+    "seen": 1789795457.0789566,
+    "ast_hash": "0a5c4fcb0fd1d7c3cf11cc408f68205c",
+    "semantic_hash": "0a5c4fcb0fd1d7c3cf11cc408f68205c"
+  }
+}

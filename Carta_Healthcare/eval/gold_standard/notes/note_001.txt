@@ -1,0 +1,66 @@
+DISCHARGE SUMMARY
+
+Patient: SYN-00001
+Age: 68
+Sex: Male
+MRN: SYN-001
+
+Admission Date: 09/15/2024
+Discharge Date: 09/18/2024
+Facility: Synthetic General Hospital
+
+CHIEF COMPLAINT:
+Chest pain and shortness of breath
+
+HISTORY OF PRESENT ILLNESS:
+68-year-old male presenting with acute onset chest pain and dyspnea. Patient reports substernal chest pain rated 7/10, radiating to left arm. Associated with diaphoresis and nausea. Symptom onset approximately 4 hours prior to presentation.
+
+VITAL SIGNS AT ADMISSION:
+Blood Pressure: 145/92 mmHg
+Heart Rate: 98 bpm
+Respiratory Rate: 22 breaths/min
+Temperature: 98.6°F
+Oxygen Saturation: 94% on room air
+
+PAST MEDICAL HISTORY:
+1. Hypertension - diagnosed 10 years ago
+2. Type 2 Diabetes Mellitus - diagnosed 5 years ago
+3. Hyperlipidemia
+
+MEDICATIONS ON ADMISSION:
+1. Lisinopril 10 mg daily
+2. Metformin 500 mg twice daily
+3. Atorvastatin 40 mg daily
+4. Aspirin 81 mg daily
+
+PHYSICAL EXAMINATION:
+Cardiovascular: Regular rate and rhythm, no murmurs
+Lungs: Clear to auscultation bilaterally
+General: Alert and oriented, anxious
+
+LABORATORY RESULTS:
+Troponin I: 2.5 ng/mL (elevated, normal <0.04)
+BNP: 450 pg/mL (elevated)
+Creatinine: 1.1 mg/dL (normal)
+Glucose: 185 mg/dL (elevated)
+
+IMAGING:
+ECG: ST elevation in leads II, III, aVF - acute inferior wall MI
+Chest X-ray: No acute findings
+
+DIAGNOSIS:
+1. Acute Myocardial Infarction - Inferior Wall
+2. Type 2 Diabetes Mellitus
+3. Essential Hypertension
+4. Hyperlipidemia
+
+HOSPITAL COURSE:
+Patient underwent emergent cardiac catheterization with successful percutaneous coronary intervention to RCA. Stent placement performed. Patient responded well to treatment with resolution of chest pain.
+
+DISCHARGE MEDICATIONS:
+1. Aspirin 325 mg daily
+2. Clopidogrel 75 mg daily
+3. Metoprolol 25 mg twice daily
+4. Lisinopril 10 mg daily
+5. Atorvastatin 80 mg daily
+6. Metformin 500 mg twice daily

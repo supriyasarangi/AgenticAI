@@ -1,0 +1,1 @@
+{"version":3,"file":"claude.d.ts","sourceRoot":"","sources":["../src/claude.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,SAAS,EAAE,MAAM,SAAS,CAAC;AAQpC,MAAM,WAAW,gBAAgB;IAC/B,IAAI,EAAE,MAAM,CAAC;IACb,UAAU,EAAE,MAAM,CAAC;IACnB,gBAAgB,EAAE,MAAM,CAAC;CAC1B;AAED,wBAAsB,gBAAgB,CAAC,SAAS,EAAE,SAAS,GAAG,OAAO,CAAC,gBAAgB,CAAC,CAkDtF"}
