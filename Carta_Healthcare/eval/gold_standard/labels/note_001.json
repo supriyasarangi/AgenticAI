@@ -1,0 +1,132 @@
+{
+  "patient": {
+    "age": 68,
+    "sex": "male",
+    "mrn": "SYN-001"
+  },
+  "encounter": {
+    "encounter_type": "discharge summary",
+    "date": "09/18/2024",
+    "provider": "Synthetic General Hospital",
+    "facility": "Synthetic General Hospital",
+    "chief_complaint": "Chest pain and shortness of breath"
+  },
+  "diagnoses": [
+    {
+      "description": "Acute Myocardial Infarction - Inferior Wall",
+      "icd10_code": "I21.01",
+      "status": "acute"
+    },
+    {
+      "description": "Type 2 Diabetes Mellitus",
+      "icd10_code": "E11.9",
+      "status": "chronic"
+    },
+    {
+      "description": "Essential Hypertension",
+      "icd10_code": "I10",
+      "status": "chronic"
+    },
+    {
+      "description": "Hyperlipidemia",
+      "icd10_code": "E78.5",
+      "status": "chronic"
+    }
+  ],
+  "medications": [
+    {
+      "name": "Aspirin",
+      "dosage": "325 mg",
+      "frequency": "daily",
+      "route": "oral"
+    },
+    {
+      "name": "Clopidogrel",
+      "dosage": "75 mg",
+      "frequency": "daily",
+      "route": "oral"
+    },
+    {
+      "name": "Metoprolol",
+      "dosage": "25 mg",
+      "frequency": "twice daily",
+      "route": "oral"
+    },
+    {
+      "name": "Lisinopril",
+      "dosage": "10 mg",
+      "frequency": "daily",
+      "route": "oral"
+    },
+    {
+      "name": "Atorvastatin",
+      "dosage": "80 mg",
+      "frequency": "daily",
+      "route": "oral"
+    },
+    {
+      "name": "Metformin",
+      "dosage": "500 mg",
+      "frequency": "twice daily",
+      "route": "oral"
+    }
+  ],
+  "vitals": [
+    {
+      "name": "blood pressure",
+      "value": "145/92",
+      "unit": "mmHg"
+    },
+    {
+      "name": "heart rate",
+      "value": "98",
+      "unit": "bpm"
+    },
+    {
+      "name": "respiratory rate",
+      "value": "22",
+      "unit": "breaths/min"
+    },
+    {
+      "name": "temperature",
+      "value": "98.6",
+      "unit": "°F"
+    },
+    {
+      "name": "oxygen saturation",
+      "value": "94",
+      "unit": "%"
+    }
+  ],
+  "labs": [
+    {
+      "test_name": "Troponin I",
+      "value": "2.5",
+      "unit": "ng/mL",
+      "reference_range": "<0.04",
+      "abnormal_flag": true
+    },
+    {
+      "test_name": "BNP",
+      "value": "450",
+      "unit": "pg/mL",
+      "reference_range": "<100",
+      "abnormal_flag": true
+    },
+    {
+      "test_name": "Creatinine",
+      "value": "1.1",
+      "unit": "mg/dL",
+      "reference_range": "0.7-1.3",
+      "abnormal_flag": false
+    },
+    {
+      "test_name": "Glucose",
+      "value": "185",
+      "unit": "mg/dL",
+      "reference_range": "70-100",
+      "abnormal_flag": true
+    }
+  ],
+  "low_confidence_fields": []
+}

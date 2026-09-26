@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: commure-db
+    environment:
+      POSTGRES_USER: commure
+      POSTGRES_PASSWORD: commure_local_dev
+      POSTGRES_DB: commure
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U commure']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: commure-backend
+    environment:
+      DATABASE_URL: postgresql://commure:commure_local_dev@db:5432/commure
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      NODE_ENV: development
+      PORT: 5000
+    ports:
+      - '5000:5000'
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend/src:/app/src
+    command: npm run dev
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: commure-frontend
+    environment:
+      VITE_API_URL: http://backend:5000
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/src:/app/src
+    command: npm run dev
+
+volumes:
+  postgres_data:

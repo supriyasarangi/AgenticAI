@@ -1,0 +1,50 @@
+OPENROUTER INTEGRATION - UPDATE COMPLETED
+==========================================
+
+STATUS: ✓ COMPLETE AND VERIFIED
+
+CHANGES MADE:
+- Updated: src/claude.ts client initialization
+  - Added: baseURL: 'https://openrouter.ai/api/v1'
+  - Kept: All existing functionality (chat completions API, model, error handling)
+  - Kept: Function signature and GenerationResult type
+  - Kept: Token counting and metrics collection
+
+WHAT STAYED THE SAME:
+✓ package.json (no new packages needed - openai SDK is compatible)
+✓ API call format (chat.completions.create)
+✓ Model selection (gpt-4o - user can change to other OpenRouter models)
+✓ Response parsing and token counting
+✓ Error handling
+✓ Database integration
+✓ Server.ts unchanged
+
+VERIFICATION COMPLETED:
+✓ TypeScript type checking: PASS (tsc --noEmit)
+✓ Build: PASS (npm run build)
+✓ OpenRouter endpoint correctly configured in compiled code
+✓ No hardcoded API keys
+✓ API key only read from process.env.OPENAI_API_KEY
+✓ Function signature unchanged: generateSOAPNote(encounter) → Promise<GenerationResult>
+
+DEPLOYMENT:
+User starts with:
+  export OPENAI_API_KEY="sk-or-v1-..." && npm run dev
+
+BACKEND BEHAVIOR:
+- All SOAP note generation requests route through OpenRouter
+- OpenRouter can use different models (gpt-4o, anthropic/claude-3-5-sonnet, etc.)
+- User can configure model choice in model field
+- Token counting and timing metrics work the same
+- Same endpoint responses, same database operations
+
+OPENROUTER MODELS AVAILABLE:
+- openai/gpt-4o (current)
+- anthropic/claude-3-5-sonnet
+- anthropic/claude-3-opus
+- And many others via OpenRouter
+
+To change model, update line 37 in src/claude.ts from:
+  model: 'gpt-4o'
+to any OpenRouter model identifier.
+

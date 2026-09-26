@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIP Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="card">
+    <h1>SIP Calculator</h1>
+    <p class="subtitle">Estimate the maturity value of your Systematic Investment Plan.</p>
+
+    <form id="sip-form">
+      <label>
+        Monthly Investment (₹)
+        <input type="number" id="monthly_investment" min="1" step="1" value="5000" required />
+      </label>
+
+      <label>
+        Expected Annual Return (%)
+        <div class="rate-row">
+          <input type="number" id="annual_return_rate" min="0" max="100" step="0.1" value="12" required />
+          <button type="button" id="suggest-btn">Suggest a realistic rate</button>
+        </div>
+        <small id="suggest-caption"></small>
+      </label>
+
+      <label>
+        Duration (years)
+        <input type="number" id="years" min="1" max="60" step="1" value="10" required />
+      </label>
+
+      <label>
+        Country
+        <select id="country_code">
+          <option value="IN" selected>India</option>
+          <option value="US">United States</option>
+          <option value="GB">United Kingdom</option>
+        </select>
+      </label>
+
+      <button type="submit">Calculate</button>
+    </form>
+
+    <section id="results" class="results" hidden>
+      <div class="result-row">
+        <span>Total Invested</span>
+        <strong id="r-invested"></strong>
+      </div>
+      <div class="result-row">
+        <span>Estimated Returns</span>
+        <strong id="r-returns"></strong>
+      </div>
+      <div class="result-row highlight">
+        <span>Maturity Value</span>
+        <strong id="r-maturity"></strong>
+      </div>
+
+      <div id="inflation-block" hidden>
+        <hr />
+        <p class="section-label">Inflation-Adjusted (Today's Purchasing Power)</p>
+        <p class="inflation-note" id="inflation-used"></p>
+        <div class="result-row">
+          <span>Real Estimated Returns</span>
+          <strong id="r-real-returns"></strong>
+        </div>
+        <div class="result-row highlight">
+          <span>Real Maturity Value</span>
+          <strong id="r-real-maturity"></strong>
+        </div>
+      </div>
+      <p id="inflation-unavailable" class="inflation-note" hidden>
+        Inflation data unavailable right now — showing nominal values only.
+      </p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

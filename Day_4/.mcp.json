@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "k6": {
+      "args": [
+        "x",
+        "mcp"
+      ],
+      "command": "k6",
+      "type": "stdio"
+    },
+    "sip-inflation": {
+      "args": [
+        "mcp_server/inflation_mcp_server.py"
+      ],
+      "command": ".venv/bin/python",
+      "env": {},
+      "type": "stdio"
+    }
+  }
+}

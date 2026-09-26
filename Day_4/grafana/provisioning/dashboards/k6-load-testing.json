@@ -1,0 +1,180 @@
+{
+  "title": "k6 Load Testing",
+  "uid": "k6-load-testing",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 2,
+  "time": { "from": "now-15m", "to": "now" },
+  "refresh": "5s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Virtual Users (VUs)",
+      "type": "timeseries",
+      "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+          "query": "SELECT mean(\"value\") AS \"vus\" FROM \"vus\" WHERE $timeFilter GROUP BY time($__interval) fill(previous)",
+          "rawQuery": true,
+          "resultFormat": "time_series",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] }
+    },
+    {
+      "id": 2,
+      "title": "Request Rate (req/s)",
+      "type": "timeseries",
+      "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "targets": [
+        {
+          "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+          "query": "SELECT count(\"value\") AS \"requests\" FROM \"http_reqs\" WHERE $timeFilter GROUP BY time($__interval) fill(0)",
+          "rawQuery": true,
+          "resultFormat": "time_series",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "reqps" }, "overrides": [] }
+    },
+    {
+      "id": 3,
+      "title": "Error Rate (%)",
+      "type": "timeseries",
+      "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+          "query": "SELECT mean(\"value\") * 100 AS \"error_rate\" FROM \"http_req_failed\" WHERE $timeFilter GROUP BY time($__interval) fill(0)",
+          "rawQuery": true,
+          "resultFormat": "time_series",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "red", "value": 1 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "title": "HTTP Request Duration (ms)",
+      "type": "timeseries",
+      "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "targets": [
+        {
+          "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+          "query": "SELECT percentile(\"value\", 95) AS \"p95\" FROM \"http_req_duration\" WHERE $timeFilter GROUP BY time($__interval) fill(previous)",
+          "rawQuery": true,
+          "resultFormat": "time_series",
+          "refId": "A"
+        },
+        {
+          "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+          "query": "SELECT mean(\"value\") AS \"avg\" FROM \"http_req_duration\" WHERE $timeFilter GROUP BY time($__interval) fill(previous)",
+          "rawQuery": true,
+          "resultFormat": "time_series",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "red", "value": 500 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "title": "Total Requests",
+      "type": "stat",
+      "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+      "gridPos": { "h": 6, "w": 12, "x": 0, "y": 16 },
+      "targets": [
+        {
+          "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+          "query": "SELECT count(\"value\") AS \"total_requests\" FROM \"http_reqs\" WHERE $timeFilter",
+          "rawQuery": true,
+          "resultFormat": "time_series",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": { "unit": "short", "decimals": 0 },
+        "overrides": []
+      }
+    },
+    {
+      "id": 6,
+      "title": "Check Pass Rate (%)",
+      "type": "stat",
+      "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+      "gridPos": { "h": 6, "w": 12, "x": 12, "y": 16 },
+      "targets": [
+        {
+          "datasource": { "type": "influxdb", "uid": "influxdb-k6" },
+          "query": "SELECT mean(\"value\") * 100 AS \"pass_rate\" FROM \"checks\" WHERE $timeFilter",
+          "rawQuery": true,
+          "resultFormat": "time_series",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "max": 100,
+          "min": 0,
+          "decimals": 2,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "green", "value": 99 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    }
+  ]
+}
